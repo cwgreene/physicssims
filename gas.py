@@ -1,14 +1,21 @@
 import numpy
+import argparse
+import sys
 
-def main():
+def main(args):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-N", type=float, default=100)
+    parser.add_argument("--dt", type=float, default=.01)
+    parser.add_argument("--sim-time", type=int, default=1000)
+    options = parser.parse_args(args)
     # 1d gas
     # random velocities and positions
-    N = 1000
+    N = options.N
     x = numpy.random.uniform(size=N)
     p = numpy.random.normal(size=N)
-    dt = .001
+    dt = options.dt
     collisions = 0
-    sim_time = 1000
+    sim_time = options.sim_time
     force = 0
     for i in range(sim_time):
         # Move!
@@ -29,4 +36,4 @@ def main():
     avg_force = force/(sim_time)/2
     print "Average force:", avg_force
     print "ratio:",avg_force/kinetic_energy
-main()
+main(sys.argv[1:])
