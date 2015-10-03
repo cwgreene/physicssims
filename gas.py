@@ -21,7 +21,7 @@ def main(args):
         # Move!
         x = x+p*dt
         # count collisions, and accumulate force
-        collisions += sum(x>1) + sum(x<0)
+        collisions += numpy.sum(x>1) + numpy.sum(x<0)
         force += abs(sum(2*p[x<0]/dt))
         force += abs(sum(2*p[x>1]/dt))
         # reflect!
