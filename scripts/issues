@@ -1,0 +1,1 @@
+curl https://api.github.com/repos/cwgreene/physicssims/issues -s | jq 'map(select(.state=="open")) | map(@text "PHYSICSIMS-\(.number) \(.title)")'
